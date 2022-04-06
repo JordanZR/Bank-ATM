@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplos</title>
+    <link href="../src/css/ejemplo.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../src/js/ejemplo.js"></script>
+    <script type="text/javascript" src="../src/js/jspdf.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <input type="email" id="email" class="form-control">
+        </div>
+        <button type="button" onclick="validateEmail()" class="btn btn-success">Validate email</button>
+        <button onclick="createPDF()" class="btn btn-secondary">PDF with email</button>
+    </form>
+</div>
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email2" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <button type="button" onclick="validateEmailPassword()" class="btn btn-primary">Submit</button>
+        <button onclick="dosPaginasPDF()" class="btn btn-warning">PDF (email and password)</button>
+    </form>
+    <canvas id="myChart"></canvas>
+    <canvas id="scatter"></canvas>
+</div>
+<script>
+    function validateEmailPassword(){
+        var constraints = {
+            email: {
+                presence: true,
+                exclusion: {
+                    within: ["nicklas"],
+                    message: "'%{value}' is not allowed"
+                },
+                length: {
+                    minimum: 1,
+                    message: "Email is too short"
+                }
+            },
+            password: {
+                presence: true,
+                length: {
+                    minimum: 6,
+                    message: "must be at least 6 characters"
+                }
+            }
+        };
+        var _email = document.getElementById("email2").value
+        var _password = document.getElementById("password").value
+        var val = validate({password: _password, email: _email}, constraints)
+        if(val == undefined){
+            swal("Good job!", "The credentials are valid!", "success")
+        }else{
+            swal ( "Oops" ,  "It looks like the credentials are not valid!" ,  "error" )
+        }
+    }
+    function validateEmail(){
+        var email = document.getElementById("email").value
+        var val = validate.single(email, {presence: true, email: true})
+        if(val == undefined){
+            swal("Good job!", "The email is valid!", "success")
+        }else{
+            swal ( "Oops" ,  "It looks like the email is not valid!" ,  "error" )
+        }
+    }
+
+    var years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+    // For drawing the lines
+    var africa = [86,114,106,106,107,111,133,221,783,2478];
+    var asia = [282,350,411,502,635,809,947,1402,3700,5267];
+    var europe = [168,170,178,190,203,276,408,547,675,734];
+    var latinAmerica = [40,20,10,16,24,38,74,167,508,784];
+    var northAmerica = [6,3,2,2,7,26,82,172,312,433];
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    data: africa,
+                    label: "Africa",
+                    borderColor: "#3e95cd",
+                    fill: false
+                },
+                {
+                    data: asia,
+                    label: "Asia",
+                    borderColor: "#3e95cd",
+                    fill: false
+                },
+                {
+                    data: europe,
+                    label: "Europe",
+                    borderColor: "#3e95cd",
+                    fill: false
+                },
+                {
+                    data: latinAmerica,
+                    label: "Latin America",
+                    borderColor: "#3e95cd",
+                    fill: false
+                },
+                {
+                    data: northAmerica,
+                    label: "North America",
+                    borderColor: "#3e95cd",
+                    fill: false
+                }
+            ]
+        }
+    });
+
+    //Scatter Plots chart
+
+    var xyValues = [
+        {x:50, y:7},
+        {x:60, y:8},
+        {x:70, y:8},
+        {x:80, y:9},
+        {x:90, y:9},
+        {x:100, y:9},
+        {x:110, y:10},
+        {x:120, y:11},
+        {x:130, y:14},
+        {x:140, y:14},
+        {x:150, y:15}
+    ];
+    ctx = document.getElementById("scatter")
+    myChart = new Chart(ctx, {
+        type: "scatter",
+        data: {
+            datasets: [{
+                pointRadius: 4,
+                pointBackgroundColor: "rgba(0,0,255,1)",
+                data: xyValues
+            }]
+        }
+    });
+</script>
+</body>
+</html>
