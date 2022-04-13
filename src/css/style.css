@@ -71,4 +71,15 @@ body {
 .table{
     margin-top: -20%;
 }
-
+.pagos{
+    width: 50%;
+    display: inline;
+    margin-left: 30%;
+}
+.pagos img{
+    width: 35%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
