@@ -7,7 +7,7 @@ function createPDF(){
 function dosPaginasPDF(){
     var doc = new jsPDF()
     var email = document.getElementById("email2").value
-    var password = document.getElementById("password").value
+    var password = documegitnt.getElementById("password").value
     doc.text(20, 20, email)
     doc.addPage()
     doc.text(20, 20, password)
