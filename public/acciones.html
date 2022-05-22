@@ -6,21 +6,26 @@
     <link href="../src/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/css/style.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+    <script type="text/javascript" src="../src/js/index.js"></script>
 </head>
 <body>
 <div class="px-4 py-5 my-5 text-center" id="acciones">
     <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg" alt="" width="20%">
-    <h1 class="display-5 fw-bold">Bienvenid@ Jordan Zelaya</h1>
+    <h1 class="display-5 fw-bold">Bienvenido Ash Ketchum</h1>
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Número de cuenta: #696969.</p>
+        <p class="lead mb-4">Número de cuenta: 0987654321.</p>
+        <p class="lead mb-4" id="saldo"></p>
         <div class="d-grid gap-2 d-lg-inline-block justify-content-sm-center" id="btns">
-            <a class="btn btn-primary btn-lg px-5 gap-3">Deposito</a>
-            <a class="btn btn-primary btn-lg px-5 gap-3">Retiro</a>
+            <a class="btn btn-primary btn-lg px-5 gap-3" href="dep-retiro.html">Deposito/Retiro</a>
             <a class="btn btn-primary btn-lg px-4 gap-3" href="historial.html">Consulta de saldo</a>
             <a class="btn btn-primary btn-lg px-5 gap-3" href="pagos.html">Pagos</a>
             <a class="btn btn-danger btn-lg px-5 gap-3" href="index.html">Salir</a>
         </div>
     </div>
 </div>
+<script>
+    var saldo = localStorage.getItem('saldo')
+    document.getElementById("saldo").innerHTML = "Saldo: $" + saldo
+</script>
 </body>
 </html>

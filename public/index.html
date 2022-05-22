@@ -4,29 +4,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pokemon Bank</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
     <link href="../src/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="../src/js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="text-center">
-
+<script>
+    var transacciones = []
+    transacciones.push(5)
+    transacciones.push(6)
+    localStorage.setItem('transacciones', transacciones)
+    localStorage.setItem('saldo', 500)
+    function validatePIN(){
+        var constraints = {
+            pin: {
+                presence: true,
+                length: {
+                    minimum: 4,
+                    message: "El PIN debe ser de 4 digitos"
+                },
+                format:{
+                    pattern: /([\d]{4})/
+                }
+            }
+        };
+        var _pin = document.getElementById("floatingPassword").value
+        var val = validate({pin: _pin}, constraints)
+        if(val == undefined){
+            swal("Excelente!", "El PIN es el correcto", "success").then(()=>{
+                    window.location.href = "acciones.html"
+            })
+        }else{
+            swal( "Oops" ,  "Parece que el PIN no es el correcto" ,  "error" )
+        }
+    }
+</script>
 <main class="form-signin">
     <form>
         <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg" alt="" width="40%" height="100%">
         <h1 class="h3 mb-3 fw-normal">Bienvenido a Pokemon Bank</h1>
 
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" maxlength="4" pattern="">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="PIN" maxlength="4">
             <label for="floatingPassword">Password</label>
         </div>
 
-        <a class="w-100 btn btn-lg btn-primary" href="acciones.html" style="color: white;text-decoration: none">Entrar</a>
+        <a class="w-100 btn btn-lg btn-primary" onclick="validatePIN()" style="color: white;text-decoration: none">Entrar</a>
         <p class="mt-5 mb-3 text-muted">&copy; ZR170168 - 2022</p>
     </form>
 </main>
-
-
-
 </body>
 </html>
