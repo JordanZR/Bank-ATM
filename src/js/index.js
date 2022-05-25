@@ -1,4 +1,5 @@
-
+var array = []
+var objeto = {}
 function validarMonto(op){
         var monto = parseFloat(document.getElementById('monto').value)
         var saldo = parseFloat(localStorage.getItem('saldo'))
@@ -38,13 +39,19 @@ function dep_retirar(op, monto, saldo){
     document.getElementById('saldo').innerHTML = "Saldo: $" + saldo
     document.getElementById('monto').value = ""
 
-    //Guardando transaccion
+    //Guardando la transaccion
+    var dato = []
+    dato.push(localStorage.getItem("transacciones"))
+    var id = Math.floor(Math.random()*10000);
 
-    transaccion = {
-        id: 7794,
-        fecha: '12/09/22',
-        descrip: descrip,
-        monto: monto
+    var transaccion = {
+        id: id,
+        monto: monto,
+        op: op,
+        fecha: "25/05/2012"
     }
-    console.log(transaccion)
+    dato.push(JSON.stringify(transaccion))
+    localStorage.setItem("transacciones", dato)
+    console.log(localStorage.getItem("transacciones"))
 }
+
