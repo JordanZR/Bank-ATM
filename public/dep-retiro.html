@@ -28,6 +28,7 @@
 </div>
 <script>
     var saldo = localStorage.getItem('saldo')
+    saldo = parseFloat(saldo).toFixed(2)
     document.getElementById("saldo").innerHTML = "Saldo: $" + saldo
 </script>
 </body>

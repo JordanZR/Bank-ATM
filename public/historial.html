@@ -25,26 +25,64 @@
             <th scope="col">Balance</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>22/03/99</td>
-            <td>OnlyFans</td>
-            <td>$10.99</td>
-            <td>$89.01</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>25/03/99</td>
-            <td>Cuota UDB</td>
-            <td>$85</td>
-            <td>$4.01</td>
-        </tr>
+        <tbody id="tabla">
         </tbody>
     </table>
 </div>
 <script>
-    var saldo = localStorage.getItem('saldo')
+    var saldo = 500.00
+    saldo = parseFloat(saldo)
+    var contador = parseInt(localStorage.getItem("contador"))
+    console.log(contador)
+    var transaccion, fila, celda, tabla, dato, descripcion
+    var monto = 0.00
+
+    //Agregando las transacciones a la tabla
+    tabla = document.getElementById("tabla");
+
+    for(var i = 1;i<contador;i++){
+        transaccion = localStorage.getItem("transaccion" + i)
+        console.log(JSON.parse(transaccion).id)
+
+        fila = document.createElement("tr")
+
+        dato = document.createTextNode(JSON.parse(transaccion).id);
+        celda = document.createElement("th")
+        celda.appendChild(dato);
+        fila.appendChild(celda)
+
+        dato = document.createTextNode(JSON.parse(transaccion).fecha)
+        celda = document.createElement("td")
+        celda.appendChild(dato)
+        fila.appendChild(celda)
+
+        dato = document.createTextNode(JSON.parse(transaccion).descripcion)
+        descripcion = JSON.parse(transaccion).descripcion
+        celda = document.createElement("td")
+        celda.appendChild(dato)
+        fila.appendChild(celda)
+
+        dato = document.createTextNode(JSON.parse(transaccion).monto)
+        monto = parseFloat(JSON.parse(transaccion).monto)
+        celda = document.createElement("td")
+        celda.appendChild(dato)
+        fila.appendChild(celda)
+
+        if(descripcion == "Retiro"){
+            saldo = saldo - monto
+        }else{
+            saldo = saldo + monto
+        }
+
+        //Agregando balance
+        dato = document.createTextNode(parseFloat(saldo).toFixed(2))
+        celda = document.createElement("td")
+        celda.appendChild(dato)
+        fila.appendChild(celda)
+
+        tabla.appendChild(fila);
+    }
+
 </script>
 </body>
 </html>

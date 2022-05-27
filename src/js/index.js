@@ -30,9 +30,11 @@ function dep_retirar(op, monto, saldo){
     var descrip
     if(op == 0){
         saldo = saldo + monto
+        saldo = parseFloat(saldo).toFixed(2)
         descrip = "Deposito"
     }else{
         saldo = saldo - monto
+        saldo = parseFloat(saldo).toFixed(2)
         descrip = "Retiro"
     }
     localStorage.setItem('saldo', saldo)
@@ -40,18 +42,25 @@ function dep_retirar(op, monto, saldo){
     document.getElementById('monto').value = ""
 
     //Guardando la transaccion
-    var dato = []
-    dato.push(localStorage.getItem("transacciones"))
+    var contador = parseInt(localStorage.getItem("contador"))
+    if(contador == 0){
+        contador = 1
+    }
+
     var id = Math.floor(Math.random()*10000);
+    var tiempoTranscurrido = Date.now();
+    var hoy = new Date(tiempoTranscurrido);
 
     var transaccion = {
-        id: id,
-        monto: monto,
-        op: op,
-        fecha: "25/05/2012"
+        "id": id,
+        "monto": monto,
+        "descripcion": descrip,
+        "fecha": hoy.toLocaleDateString()
     }
-    dato.push(JSON.stringify(transaccion))
-    localStorage.setItem("transacciones", dato)
-    console.log(localStorage.getItem("transacciones"))
+    localStorage.setItem("transaccion" + contador, JSON.stringify(transaccion))
+    console.log(JSON.parse(localStorage.getItem("transaccion" + contador)))
+
+    contador = contador + 1
+    localStorage.setItem("contador", contador)
 }
 
