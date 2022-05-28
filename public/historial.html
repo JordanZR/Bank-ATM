@@ -11,10 +11,12 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<a class="btn btn-success btn-lg px-5 gap-3" id="btn-volver"  href="acciones.html">Volver</a>
-<a class="btn btn-danger btn-lg px-5 gap-3" id="btn-salir"  href="index.html">Salir</a>
-<div class="container">
 
+<div class="container">
+    <div class="opciones">
+        <a class="btn btn-success btn-lg px-5 gap-3" id="btn-volver"  href="acciones.html">Volver</a>
+        <a class="btn btn-danger btn-lg px-5 gap-3" id="btn-salir"  href="index.html">Salir</a>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -68,7 +70,7 @@
         celda.appendChild(dato)
         fila.appendChild(celda)
 
-        if(descripcion == "Retiro"){
+        if(descripcion != "Deposito"){
             saldo = saldo - monto
         }else{
             saldo = saldo + monto

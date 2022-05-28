@@ -58,28 +58,24 @@ body {
 #btns a{
     margin-bottom: 2%;
 }
-#btn-salir{
-    position: absolute;
-    margin-top: -40%;
-    margin-left: 82%;
-}
-#btn-volver{
-    position: absolute;
-    margin-top: -40%;
-    margin-left: 10%;
-}
-.table{
-    margin-top: -20%;
-}
 .pagos{
-    width: 50%;
+    margin-left: 20%;
     display: inline;
-    margin-left: 30%;
 }
 .pagos img{
-    width: 35%;
+    width: 10%;
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
+}
+.opciones{
+    width: 50%;
+    display: inline;
+}
+#btn-salir{
+    margin-left: 72%;
+}
+.table{
+    margin-top: 2%;
 }

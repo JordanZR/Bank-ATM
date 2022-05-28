@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Deposito</title>
+    <title>Title</title>
     <link href="../src/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/css/style.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
@@ -18,8 +18,8 @@
         <a class="btn btn-danger btn-lg px-5 gap-3" id="btn-salir"  href="index.html">Salir</a>
     </div>
     <div class="px-4 py-5 my-5 text-center" id="acciones">
-
         <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4" id="pagode"></p>
             <p class="lead mb-4">Número de cuenta: 0987654321.</p>
             <p class="lead mb-4" id="saldo"></p>
         </div>
@@ -28,16 +28,18 @@
             <span class="input-group-text">0.00</span>
             <input type="number" class="form-control" id="monto">
         </div>
-        <button type="button" class="btn btn-success" onClick="validarMonto(0)">Depositar</button>
-        <button type="button" class="btn btn-info" onClick="validarMonto(1)">Retirar</button>
+        <button type="button" class="btn btn-success" onClick="validarMonto(2)">Pagar</button>
     </div>
 </div>
-
 
 <script>
     var saldo = localStorage.getItem('saldo')
     saldo = parseFloat(saldo).toFixed(2)
     document.getElementById("saldo").innerHTML = "Saldo: $" + saldo
+
+    var seccion = localStorage.getItem("seccion")
+    var p = document.getElementById("pagode")
+    p.innerText = "Pago de " + seccion
 </script>
 </body>
 </html>

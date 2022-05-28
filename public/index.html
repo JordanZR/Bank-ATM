@@ -13,11 +13,7 @@
 </head>
 <body class="text-center">
 <script>
-    var transacciones = []
-    transacciones.push(5)
-    transacciones.push(6)
-    localStorage.setItem('transacciones', transacciones)
-    localStorage.setItem('saldo', 500)
+    if(parseInt(localStorage.getItem("saldo")) !=500){}else{localStorage.setItem('saldo', 500)}
     function validatePIN(){
         var constraints = {
             pin: {
@@ -41,8 +37,10 @@
             swal( "Oops" ,  "Parece que el PIN no es el correcto" ,  "error" )
         }
     }
-    //Contador de transacciones
-    localStorage.setItem("contador", 0)
+    //localStorage.setItem("contador", 0)
+    //localStorage.setItem("saldo", 500)
+    //Chequea si existen transacciones previas
+    if(parseInt(localStorage.getItem("contador")) != 0){}else{localStorage.setItem("contador", 0)}
 </script>
 <main class="form-signin">
     <form>
