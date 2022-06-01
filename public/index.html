@@ -13,6 +13,7 @@
 </head>
 <body class="text-center">
 <script>
+    //Setting saldo
     if(parseInt(localStorage.getItem("saldo")) !=500){}else{localStorage.setItem('saldo', 500)}
     function validatePIN(){
         var constraints = {
@@ -29,7 +30,7 @@
         };
         var _pin = document.getElementById("floatingPassword").value
         var val = validate({pin: _pin}, constraints)
-        if(val == undefined){
+        if(val == undefined && _pin == "1234"){
             swal("Excelente!", "El PIN es el correcto", "success").then(()=>{
                     window.location.href = "acciones.html"
             })
@@ -37,6 +38,7 @@
             swal( "Oops" ,  "Parece que el PIN no es el correcto" ,  "error" )
         }
     }
+    //Set local contador and saldo back to its original parameters
     //localStorage.setItem("contador", 0)
     //localStorage.setItem("saldo", 500)
     //Chequea si existen transacciones previas
